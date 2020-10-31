@@ -26,7 +26,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.GITHUB_SHA }}
+          tag_name: ${{ github.sha }}
           release_name: Release ${{ env.GITHUB_SHA }}
           draft: false
           prerelease: false
@@ -35,6 +35,6 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: commit-*
-          tag: ${{ env.GITHUB_SHA }}
+          tag: ${{ github.sha }}
           overwrite: true
           file_glob: true
