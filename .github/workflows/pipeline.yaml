@@ -21,7 +21,7 @@ jobs:
         run: env
       - name: github sha
         run: echo $GITHUB_SHA
-      - name: pre-release
+      - name: pre-release ${{ env.GITHUB_SHA }}
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
@@ -30,7 +30,7 @@ jobs:
           title: "Development Build"
           files: |
             commit-*
-      - name: release
+      - name: release ${{ env.GITHUB_SHA }}
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUBTOKEN }}"
