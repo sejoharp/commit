@@ -17,6 +17,10 @@ jobs:
         run: make test
       - name: build linux
         run: make build-linux-amd64
+      - name: build darwin
+        run: make build-darwin-amd64
+      - name: build windows
+        run: make build-windows-amd64
       - name: determine tag
         id: release-id
         run: echo "::set-output name=tag::$(git rev-parse --short HEAD)"
