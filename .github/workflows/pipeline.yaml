@@ -21,20 +21,20 @@ jobs:
         run: env
       - name: github sha
         run: echo $GITHUB_SHA
-      - name: pre-release ${{ env.GITHUB_SHA }}
+      - name: pre-release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "${ env.GITHUB_SHA }"
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          automatic_release_tag: ${{ env.GITHUB_SHA }}
           prerelease: true
           title: "Development Build"
           files: |
             commit-*
-      - name: release ${{ env.GITHUB_SHA }}
+      - name: release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          repo_token: "${{ secrets.GITHUBTOKEN }}"
-          automatic_release_tag: "${ env.GITHUB_SHA }"
+          repo_token: ${{ secrets.GITHUBTOKEN }}
+          automatic_release_tag: ${{ env.GITHUB_SHA }}
           prerelease: false
           files: |
             commit-*
