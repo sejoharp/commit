@@ -25,7 +25,7 @@ jobs:
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          automatic_release_tag: ${{ env.GITHUB_SHA }}
+          automatic_release_tag: "${{ env.GITHUB_SHA }}"
           prerelease: true
           title: "Development Build"
           files: |
@@ -34,7 +34,7 @@ jobs:
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: ${{ secrets.GITHUBTOKEN }}
-          automatic_release_tag: ${{ env.GITHUB_SHA }}
+          automatic_release_tag: "${{ env.GITHUB_SHA }}"
           prerelease: false
           files: |
             commit-*
