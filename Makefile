@@ -24,6 +24,9 @@ debug-build: ## Build binary
 test: ## Run tests
 	go test ./...
 
+dependencies:
+	go get ./...
+
 cover: ## Run test-coverage and open in browser
 	go test -v -covermode=count -coverprofile=coverage.out ./... && go tool cover -html=coverage.out
 
