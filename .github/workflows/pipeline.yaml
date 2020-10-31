@@ -17,16 +17,15 @@ jobs:
         run: make test
       - name: build linux
         run: make build-linux-amd64
-      - name: debug all envs
-        run: env
-      - name: github sha
-        run: echo $GITHUB_SHA
+      - name: determine tag
+        id: release-id
+        run: echo "::set-output name=tag::$(git rev-parse --short HEAD)"
       - name: Create Release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.sha }}
+          tag_name: ${{ steps.release-id.outputs.tag }}
           release_name: Release ${{ env.GITHUB_SHA }}
           draft: false
           prerelease: false
@@ -35,6 +34,6 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: commit-*
-          tag: ${{ github.sha }}
+          tag: ${{ steps.release-id.outputs.tag }}
           overwrite: true
           file_glob: true
