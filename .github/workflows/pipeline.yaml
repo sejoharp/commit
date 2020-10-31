@@ -1,7 +1,6 @@
-on:
-  push:
-    branches:
-      - master
+on: 
+  release:
+    types: [created]
 
 jobs:
   releases-matrix:
