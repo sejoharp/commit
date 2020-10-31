@@ -21,20 +21,20 @@ jobs:
         run: env
       - name: github sha
         run: echo $GITHUB_SHA
-      - name: pre-release
-        uses: "marvinpinto/action-automatic-releases@latest"
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.GITHUB_SHA }}
+          release_name: Release ${{ env.GITHUB_SHA }}
+          draft: false
+          prerelease: false
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          automatic_release_tag: "${{ env.GITHUB_SHA }}"
-          prerelease: true
-          title: "Development Build"
-          files: |
-            commit-*
-      - name: release
-        uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: ${{ secrets.GITHUBTOKEN }}
-          automatic_release_tag: "${{ env.GITHUB_SHA }}"
-          prerelease: false
-          files: |
-            commit-*
+          file: commit-*
+          tag: ${{ env.GITHUB_SHA }}
+          overwrite: true
+          file_glob: true
