@@ -30,7 +30,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.release-id.outputs.tag }}
-          release_name: Release ${{ env.GITHUB_SHA }}
+          release_name: Release ${{ steps.release-id.outputs.tag }}
           draft: false
           prerelease: false
       - name: Upload binaries to release
