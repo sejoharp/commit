@@ -17,7 +17,7 @@ jobs:
         run: make build-linux-amd64
       - name: release
         uses: "marvinpinto/action-automatic-releases@latest"
-          with:
+        with:
             repo_token: "${{ secrets.GITHUBTOKEN }}"
             automatic_release_tag: ${GITHUB_SHA}
             prerelease: false
